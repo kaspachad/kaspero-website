@@ -601,7 +601,82 @@ footer a i {
   }
 }
 
+/* Progress bars for Apps  */
+/* Add these styles to your existing styles.css file */
 
+.app-progress-container {
+  width: 100%;
+  height: 6px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+}
 
+.app-progress-bar {
+  height: 100%;
+  background: var(--gradient);
+  width: 0%; /* Start at 0% */
+  transition: width 1.5s ease-in-out;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* Add a subtle animation effect */
+.app-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+                             rgba(255,255,255,0) 0%, 
+                             rgba(255,255,255,0.2) 50%, 
+                             rgba(255,255,255,0) 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.app-completion-text {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* Visual cues based on completion percentage */
+.app-progress-bar[data-completion="99"],
+.app-progress-bar[data-completion="100"] {
+  background: linear-gradient(135deg, #70C7BA 0%, #5ab6a9 100%);
+}
+
+.app-progress-bar[data-completion="5"],
+.app-progress-bar[data-completion^="1"],
+.app-progress-bar[data-completion^="2"] {
+  background: linear-gradient(135deg, #FFB347 0%, #ffcc80 100%);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .app-progress-container {
+    height: 5px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .app-completion-text {
+    font-size: 0.75rem;
+  }
+}
 
 

@@ -2,27 +2,32 @@ const apps = [
   { 
     name: 'Kaspa Charger', 
     logo: 'images/charger.png', 
-    description: 'Generates a QR code with price (and optional tip). Fast, seamless payments'
+    description: 'Generates a QR code with price (and optional tip). Fast, seamless payments',
+    completion: 99
   },
   { 
     name: 'Kaspa Wallet', 
     logo: 'images/wallet.png',
-    description: 'Secure & intuitive cryptocurrency management. Supports Kaspa charger.'
+    description: 'Secure & intuitive cryptocurrency management. Supports Kaspa charger.',
+    completion: 85
   },
   { 
     name: 'Kaspa Business Map', 
     logo: 'images/map.png',
-    description: 'Discover Kaspa-accepting businesses worldwide'
+    description: 'Discover Kaspa-accepting businesses worldwide',
+    completion: 20
   },
   { 
     name: 'Kaspa Scanner', 
     logo: 'images/scanner.png',
-    description: 'Add wallets (your own or whales) to watch lists - for monitoring activity'
+    description: 'Add wallets (your own or whales) to watch lists - for monitoring activity',
+    completion: 99
   },
   { 
     name: 'Kaspa Security Center', 
     logo: 'images/security.png',
-    description: 'Report problems and open investigations for scams or hacks'
+    description: 'Report problems and open investigations for scams or hacks',
+    completion: 5
   },
 ];
 
@@ -34,6 +39,75 @@ const screenshots = {
   'Kaspa Security Center': ['images/security1.jpeg','images/security2.jpeg']
 };
 
+// 1. First, let's add the CSS for progress bars to the styles.css file
+
+// Add this to your styles.css file
+/*
+.app-progress-container {
+  width: 100%;
+  height: 6px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.app-progress-bar {
+  height: 100%;
+  background: var(--gradient);
+  width: 0%; /* Start at 0% */
+  transition: width 1.5s ease-in-out;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.app-completion-text {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+  margin-top: 2px;
+  font-weight: 500;
+}
+*/
+
+// 2. Now let's modify the JavaScript to add the progress bars and animate them
+
+// Update the apps array to include completion percentages
+const apps = [
+  { 
+    name: 'Kaspa Charger', 
+    logo: 'images/charger.png', 
+    description: 'Generates a QR code with price (and optional tip). Fast, seamless payments',
+    completion: 99
+  },
+  { 
+    name: 'Kaspa Wallet', 
+    logo: 'images/wallet.png',
+    description: 'Secure & intuitive cryptocurrency management. Supports Kaspa charger.',
+    completion: 85
+  },
+  { 
+    name: 'Kaspa Business Map', 
+    logo: 'images/map.png',
+    description: 'Discover Kaspa-accepting businesses worldwide',
+    completion: 20
+  },
+  { 
+    name: 'Kaspa Scanner', 
+    logo: 'images/scanner.png',
+    description: 'Add wallets (your own or whales) to watch lists - for monitoring activity',
+    completion: 99
+  },
+  { 
+    name: 'Kaspa Security Center', 
+    logo: 'images/security.png',
+    description: 'Report problems and open investigations for scams or hacks',
+    completion: 5
+  },
+];
+
+// Update the app creation function to include progress bars
 const appsContainer = document.getElementById('apps-container');
 
 apps.forEach(app => {
@@ -49,6 +123,19 @@ apps.forEach(app => {
       <p>${app.description}</p>
     </div>
   `;
+
+  // Create progress bar container and bar
+  const progressContainer = document.createElement('div');
+  progressContainer.className = 'app-progress-container';
+  
+  const progressBar = document.createElement('div');
+  progressBar.className = 'app-progress-bar';
+  progressBar.dataset.completion = app.completion;
+  progressContainer.appendChild(progressBar);
+  
+  const completionText = document.createElement('div');
+  completionText.className = 'app-completion-text';
+  completionText.textContent = `${app.completion}% complete`;
 
   const carousel = document.createElement('div');
   carousel.className = 'carousel-container';
@@ -73,9 +160,50 @@ apps.forEach(app => {
   carousel.appendChild(right);
 
   wrapper.appendChild(header);
+  wrapper.appendChild(progressContainer); // Add progress container
+  wrapper.appendChild(completionText);   // Add completion text
   wrapper.appendChild(carousel);
   appsContainer.appendChild(wrapper);
 });
+
+// 3. Add Intersection Observer to animate progress bars when they come into view
+document.addEventListener('DOMContentLoaded', function() {
+  setupImageModals();
+  setupModalListeners();
+  setupProgressBarAnimations();
+});
+
+function setupProgressBarAnimations() {
+  // Create an Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // When app section is visible
+      if (entry.isIntersecting) {
+        const appSection = entry.target;
+        const progressBar = appSection.querySelector('.app-progress-bar');
+        if (progressBar && !progressBar.classList.contains('animated')) {
+          // Get the completion percentage and animate the width
+          const completion = progressBar.dataset.completion;
+          setTimeout(() => {
+            progressBar.style.width = `${completion}%`;
+            progressBar.classList.add('animated');
+          }, 200); // Small delay for better visual effect
+        }
+        // Unobserve after animation
+        observer.unobserve(appSection);
+      }
+    });
+  }, {
+    threshold: 0.2 // Trigger when 20% of the element is visible
+  });
+
+  // Observe all app sections
+  document.querySelectorAll('.app-section').forEach(section => {
+    observer.observe(section);
+  });
+}
+
+
 
 function navigate(appName, imgEl, direction, leftArrow, rightArrow) {
   const list = screenshots[appName];
@@ -211,6 +339,36 @@ function navigateNext() {
   }
 }
 
+function setupProgressBarAnimations() {
+  // Create an Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // When app section is visible
+      if (entry.isIntersecting) {
+        const appSection = entry.target;
+        const progressBar = appSection.querySelector('.app-progress-bar');
+        if (progressBar && !progressBar.classList.contains('animated')) {
+          // Get the completion percentage and animate the width
+          const completion = progressBar.dataset.completion;
+          setTimeout(() => {
+            progressBar.style.width = `${completion}%`;
+            progressBar.classList.add('animated');
+          }, 200); // Small delay for better visual effect
+        }
+        // Unobserve after animation
+        observer.unobserve(appSection);
+      }
+    });
+  }, {
+    threshold: 0.2 // Trigger when 20% of the element is visible
+  });
+
+  // Observe all app sections
+  document.querySelectorAll('.app-section').forEach(section => {
+    observer.observe(section);
+  });
+}
+
 // Set up event listeners for modal
 function setupModalListeners() {
   const modal = document.getElementById('imageModal');
@@ -244,7 +402,9 @@ function setupModalListeners() {
 document.addEventListener('DOMContentLoaded', function() {
   setupImageModals();
   setupModalListeners();
+  setupProgressBarAnimations();
 });
+
 
 
 
