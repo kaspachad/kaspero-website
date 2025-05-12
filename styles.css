@@ -480,8 +480,18 @@ footer a i {
   overflow: hidden;
 }
 
+/* CSS for the modal content wrapper */
+.modal-content-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 1200px;
+}
+
 .modal-content {
-  max-width: 90%;
+  max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
   margin: auto;
@@ -521,13 +531,15 @@ footer a i {
   transform: scale(1.1);
 }
 
+  /* Updated Modal Navigation Styles */
 .modal-navigation {
   position: absolute;
   width: 100%;
+  max-width: 90%; /* Match max-width of the image */
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
-  box-sizing: border-box;
+  align-items: center;
+  pointer-events: none; /* This prevents clicks on the container itself */
 }
 
 .modal-nav-btn {
@@ -543,33 +555,41 @@ footer a i {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
+  pointer-events: auto; /* Re-enable pointer events on the buttons */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .modal-nav-btn:hover {
   background-color: var(--primary);
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .prev-btn {
-  margin-right: auto;
+  left: -70px; /* Position left of the image */
 }
 
 .next-btn {
-  margin-left: auto;
+  right: -70px; /* Position right of the image */
 }
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
-  .modal-content {
-    max-width: 95%;
-  }
-  
   .modal-nav-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
   
+  .prev-btn {
+    left: -50px;
+  }
+  
+  .next-btn {
+    right: -50px;
+  }
+}
   .close-modal {
     font-size: 30px;
     top: 10px;
