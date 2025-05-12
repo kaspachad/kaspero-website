@@ -38,6 +38,11 @@
   <p class="collab-text">We are actively seeking collaborations with like-minded individuals and teams who share our passion for advancing the Kaspa ecosystem. If you're building in this space, let's connect and explore possibilities together.</p>
 </section>
 
+
+<h2 class="section-title">Our Solutions</h2>
+<div class="apps-grid" id="apps-container"></div>
+
+
 <section class="tracer-section">
   <h2><span>Kaspa Visualizer</span> — Watch Transaction Patterns & Track Wallet Activity</h2>
   <img id="tracer-main" class="main-image" src="images/tracer1.png" alt="Tracer Screenshot">
@@ -50,9 +55,6 @@
     <img src="images/tracer6.png" onclick="selectTracer(5)" alt="Tracer Dashboard">
   </div>
 </section>
-
-<h2 class="section-title">Our Solutions</h2>
-<div class="apps-grid" id="apps-container"></div>
 
 
 <footer id="contact">
@@ -69,6 +71,16 @@
   
   <p class="copyright">© 2025 Kaspero Labs. All rights reserved.</p>
 </footer>
+
+<div id="imageModal" class="image-modal">
+  <span class="close-modal">&times;</span>
+  <img class="modal-content" id="modalImg">
+  <div class="modal-caption" id="modalCaption"></div>
+  <div class="modal-navigation">
+    <button class="modal-nav-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+    <button class="modal-nav-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

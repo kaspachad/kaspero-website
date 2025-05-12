@@ -462,3 +462,126 @@ footer a i {
     padding: 0.5rem 1rem;
   }
 }
+
+/* Image Modal Styles */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding: 20px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  animation: zoom 0.3s ease-in-out;
+}
+
+@keyframes zoom {
+  from {transform: scale(0.8); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+
+.modal-caption {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.2s;
+}
+
+.close-modal:hover {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+.modal-navigation {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.modal-nav-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-nav-btn:hover {
+  background-color: var(--primary);
+  transform: scale(1.1);
+}
+
+.prev-btn {
+  margin-right: auto;
+}
+
+.next-btn {
+  margin-left: auto;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95%;
+  }
+  
+  .modal-nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .close-modal {
+    font-size: 30px;
+    top: 10px;
+    right: 15px;
+  }
+  
+  .modal-navigation {
+    padding: 0 15px;
+  }
+}
+
+
+
+
+
