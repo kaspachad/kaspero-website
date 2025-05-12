@@ -9,7 +9,7 @@ const apps = [
   { 
     name: 'Kaspa Wallet', 
     logo: 'images/wallet.png',
-    description: 'Secure & intuitive cryptocurrency management. Supports Kaspa charger.',
+    description: 'Kaspa Wallet with KRC-20 support. Works with Kaspa charger.',
     completion: 85
   },
   { 
