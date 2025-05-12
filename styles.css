@@ -612,17 +612,14 @@ footer a i {
   margin-top: 10px;
   margin-bottom: 15px;
   overflow: hidden;
-  position: relative;
 }
 
 .app-progress-bar {
   height: 100%;
-  background: var(--gradient);
-  width: 0%; /* Start at 0% */
+  background: linear-gradient(135deg, #70C7BA 0%, #5574d1 100%);
+  width: 0%; /* This will be animated */
   transition: width 1.5s ease-in-out;
   border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  position: relative;
 }
 
 /* Add a subtle animation effect */
@@ -651,7 +648,6 @@ footer a i {
   text-align: right;
   margin-top: 2px;
   margin-bottom: 10px;
-  font-weight: 500;
 }
 
 /* Visual cues based on completion percentage */

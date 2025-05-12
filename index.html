@@ -83,5 +83,28 @@
 </div>
 
 <script src="script.js"></script>
+
+<script>
+  // Simple function to animate progress bars
+  function animateProgressBars() {
+    // Get all progress bars
+    const progressBars = document.querySelectorAll('.app-progress-bar');
+    
+    // Set timeout to ensure DOM is fully loaded and page is rendered
+    setTimeout(function() {
+      // For each progress bar, set the width to the completion percentage
+      progressBars.forEach(function(bar) {
+        var completion = bar.getAttribute('data-completion');
+        bar.style.width = completion + '%';
+      });
+    }, 1000); // 1 second delay
+  }
+
+  // Call the function when page loads
+  window.onload = function() {
+    animateProgressBars();
+  };
+</script>
+
 </body>
 </html>
