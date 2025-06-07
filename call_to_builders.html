@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call to Builders - Kaspero Labs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d2d5f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #49d4f0 0%, #0891b2 100%);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.1; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.2; }
+        }
+        
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #49d4f0 0%, #0891b2 50%, #70e6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(73, 212, 240, 0.3);
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 80px rgba(73, 212, 240, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(73, 212, 240, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #49d4f0, #0891b2, #70e6ff);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0891b2;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #49d4f0, #0891b2);
+            border-radius: 2px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(73, 212, 240, 0.15) 0%, rgba(8, 145, 178, 0.15) 100%);
+            padding: 0.2em 0.5em;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #0891b2;
+            border: 1px solid rgba(73, 212, 240, 0.3);
+        }
+        
+        .strong-text {
+            font-weight: 700;
+            color: #0f172a;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #0891b2 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            background: linear-gradient(90deg, #70e6ff, #49d4f0, #0891b2);
+        }
+        
+        .contact-info {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .email-link, .telegram-link {
+            color: #70e6ff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(112, 230, 255, 0.1);
+            border: 1px solid rgba(112, 230, 255, 0.3);
+            display: inline-block;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .email-link:hover, .telegram-link:hover {
+            background: rgba(112, 230, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(112, 230, 255, 0.2);
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(73, 212, 240, 0.1) 0%, transparent 70%);
+            animation: float 20s infinite linear;
+        }
+        
+        .floating-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 70%;
+            right: 10%;
+            animation-delay: -10s;
+        }
+        
+        .floating-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 40%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(0px) rotate(180deg); }
+            75% { transform: translateY(20px) rotate(270deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #475569;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Call to Builders</h1>
+            <p class="intro-text">Building the future of Kaspa through utility, not hype</p>
+        </header>
+        
+        <div class="content-card">
+            <h2 class="section-title">The Vision</h2>
+            <p>Kaspero Labs was created to promote <span class="highlight">Kaspa</span> through <span class="highlight">utility</span>, not hype. We believe the next wave of adoption will come from ordinary people encountering real use cases that just work. Onboarding shouldn't require tutorials or tokenomics charts: it should feel like using the internet for the first time.</p>
+            <p>Every tool we build makes Kaspa <span class="strong-text">tangible</span>. Getting a job, reporting fraud, discovering a business. This isn't speculation. This is infrastructure.</p>
+        </div>
+        
+        <div class="content-card">
+            <h2 class="section-title">The Bigger Picture</h2>
+            <p><a href="https://kaspajobs.com" class="highlight" style="text-decoration: none;" target="_blank">KaspaJobs.com</a> is our proof-of-concept: a fully working jobs platform powered by Kaspa. But the real target is the upcoming <span class="highlight">Kaspa Security Center</span>.</p>
+            <p>The Security Center will be a unified space for users, merchants, and builders to <span class="strong-text">report scams, fraud, and theft</span>. It won't stop at passive reporting: <span class="strong-text">investigation tools, visual analysis (Kaspa Radar), coordination with law enforcement</span> across multiple jurisdictions.</p>
+            <p>This stack includes Kaspa Radar (the first DAG-based visual tracer for fraud investigation), the Business Map (verified Kaspa-accepting locations), and the Passive Wallet Scanner (monitoring for suspicious wallet activity).</p>
+            <p>Wallets and PoS terminals already exist. Our focus is elsewhere: building <span class="strong-text">trust layers</span>, not just apps.</p>
+        </div>
+        
+        <div class="content-card">
+            <h2 class="section-title">The Limitation</h2>
+            <p>The vision is clear, but the body is finite. One mind, two hands, limited hours.</p>
+            <p>Kaspero Labs has reached the edge of what can be done solo. We need <span class="strong-text">more hands on deck</span>. I can't offer salaries yet, but I can offer transparency, shared ownership, and the chance to steer this ship.</p>
+            <p>If you're a developer, designer, writer, or anything in between: and you're tired of Web3 being all fluff and no substance: this is your invitation.</p>
+            <p>We work as a cooperative. Contributors log their work. When the time comes (through funding, revenue, or both), you get <span class="strong-text">a fair share of profits and decision-making</span>. Real skin in the game.</p>
+        </div>
+        
+        <div class="content-card">
+            <h2 class="section-title">About Me</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <img src="images/picture.jpg" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #49d4f0; box-shadow: 0 8px 24px rgba(73, 212, 240, 0.3); margin-bottom: 1rem;">
+                <h3 style="color: #0891b2; font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700;">Oz Steinmetz, Founder</h3>
+            </div>
+            <p>18+ years in the tech industry across various roles and ventures, with entrepreneurial experience building solutions that solve real problems. Entered cryptocurrency in 2020 and discovered Kaspa in 2022.</p>
+            <p>Proven ability to ship: KaspaJobs.com is live and growing organically. Currently developing Security Center, Kaspa Radar analytics, and backend infrastructure tools.</p>
+            <p>Philosophy: Build practical tools that make KAS useful in daily commerce. Focus on real utility over speculation, with a no-buzzword approach to solving actual problems.</p>
+        </div>
+        
+        <div class="content-card contact-section">
+            <h2 class="section-title" style="color: #70e6ff;">Ready to Build?</h2>
+            <p>Want to help? Contact Oz at:</p>
+            <div class="contact-info">
+                <a href="mailto:kasperolabs@gmail.com" class="email-link">kasperolabs@gmail.com</a>
+                <a href="https://t.me/kasperolabs" class="telegram-link" target="_blank">@kasperolabs on Telegram</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
